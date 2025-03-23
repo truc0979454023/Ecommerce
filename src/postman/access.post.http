@@ -1,0 +1,21 @@
+### signup
+@url_dev=http://localhost:3055/v1/api
+# POST {{url_dev}}/shop/signup
+# Content-Type:application/json
+# x-api-key: 1
+
+# {
+#     "name":"ShopMT",
+#     "email":"mt101@gmail.com",
+#     "password":"abc1234"
+# }
+
+
+POST {{url_dev}}/shop/login
+Content-Type:application/json
+x-api-key: 1
+
+{
+    "email":"mt101@gmail.com",
+    "password":"abc1234"
+}
