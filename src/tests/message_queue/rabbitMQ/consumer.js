@@ -1,5 +1,4 @@
 const amqp = require("amqplib");
-const message = "Hello RabbitMQ ";
 
 const consumerQueue = async (queueName) => {
   try {
@@ -9,6 +8,7 @@ const consumerQueue = async (queueName) => {
     await channel.assertQueue(queueName, {
       durable: true,
     });
+
     console.log(`waiting for messages...`);
     channel.consume(
       queueName,

@@ -1,5 +1,4 @@
 const amqp = require("amqplib");
-const message = "Hello RabbitMQ ";
 
 const runProducer = async () => {
   try {
@@ -11,6 +10,7 @@ const runProducer = async () => {
       durable: true,
     });
 
+    const message = "Hello RabbitMQ ";
     channel.sendToQueue(queueName, Buffer.from(message));
     console.log(`Message send:`, message);
     setTimeout(() => {
