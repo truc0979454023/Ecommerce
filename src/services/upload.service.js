@@ -9,6 +9,7 @@ const urlImagePublic = `https://link.cloudfront.net`; // link lay tu cloudFront 
 
 const randomImageName = () => crypto.randomBytes(16).toString("hex");
 class UploadService {
+  // chưa học bài này Section 69: AWS CloudFront Bảo mật File ngăn cấm hành vi sao chép phía BackEnd
   //1. upload from url image
   static uploadImageFromUrl = async () => {
     try {
@@ -84,7 +85,7 @@ class UploadService {
     }
   };
 
-  // 3. upload dile use S3Client
+  // 3. upload file use S3Client
   static uploadImageFromLocalToS3Client = async ({ file }) => {
     try {
       const imageNameRamdom = randomImageName();
@@ -103,7 +104,7 @@ class UploadService {
         Bucket: process.env.AWS_BUCKET_NAME,
         Key: imageNameRamdom,
       });
-      const url = await getSignedUrl(s3, singleUrl, { expiresIn: 3600 });
+      const url = await getSignedUrl(s3, singleUrl, { expiresIn: 36000 });
 
       return { url: `${urlImagePublic}/${imageNameRamdom}`, result };
     } catch (error) {
