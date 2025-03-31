@@ -21,12 +21,12 @@ const RoleSchema = new Schema(
     roleDescription: { type: String, default: "" },
     roleGrants: [
       {
-        resource: {
+        resourceId: {
           type: Schema.Types.ObjectId,
           ref: "Resource",
           required: true,
         },
-        actions: { type: String, required: true },
+        actions: [{ type: String, required: true }],
         attributes: { type: String, default: "*" },
       },
     ],

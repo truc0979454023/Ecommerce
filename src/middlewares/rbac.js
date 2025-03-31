@@ -1,6 +1,7 @@
 "user strict";
 
 const { AuthFailureError } = require("../core/error.response");
+const RbacSerivce = require("../services/rbac.service");
 const rbac = require("./role.middleware");
 
 /**
@@ -12,6 +13,11 @@ const rbac = require("./role.middleware");
 const grantAccess = (action, resource) => {
   return async (req, res, next) => {
     try {
+      rbac.setGrants(
+        await RbacSerivce.getListRole({
+          userId: 9999,
+        })
+      );
       const roleName = req.query.role;
       const permissions = rbac.can(roleName)[action](resource);
       if (!permissions.granted) {
